@@ -12,6 +12,7 @@ namespace Varasto.Core.Database
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Label> Labels { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
