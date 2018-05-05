@@ -32,7 +32,7 @@
       "dependencies": {
         "Microsoft.NET.Test.Sdk": {
           "target": "Package",
-          "version": "[15.5.0, )"
+          "version": "[15.7.0, )"
         },
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
