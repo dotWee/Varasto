@@ -1,0 +1,9 @@
+@model Varasto.Core.Model.Category
+
+@{
+    ViewData["Title"] = "Kategorie löschen";
+    ViewData["ModelName"] = "Kategorie";
+    ViewData["ModelValue"] = Html.DisplayFor(model => model.Description);
+    ViewData["ModelId"] = Model.CategoryId;
+    Layout = "_PartialModelDelete";
+}

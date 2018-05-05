@@ -1,0 +1,21 @@
+@model Varasto.Core.Model.Category
+
+@{
+    ViewData["Title"] = "Kategoriedetails";
+    Layout = "_PartialModelDetails";
+}
+
+@section ModelElements{
+    <dt>
+        @Html.DisplayNameFor(model => model.CategoryId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CategoryId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+}
