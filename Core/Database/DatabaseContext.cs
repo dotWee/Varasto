@@ -6,6 +6,12 @@ namespace Varasto.Core.Database
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext() : base(new DbContextOptionsBuilder<DatabaseContext>()
+            .UseInMemoryDatabase(databaseName: Globals.SchemaName)
+            .Options)
+        {
+        }
+        
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         { }

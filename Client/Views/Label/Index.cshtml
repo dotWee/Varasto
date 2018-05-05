@@ -1,0 +1,43 @@
+@model IEnumerable<Varasto.Core.Model.Label>
+
+@{
+    ViewData["Title"] = "Label";
+    ViewData["TitleCreate"] = "Neues Label anlegen";
+    Layout = "_PartialModelIndex";
+}
+
+@section ModelCols{
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.LabelId)
+    </th>
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th scope="col" colspan="3">
+        Aktionen
+    </th>
+}
+
+@section ModelRows{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td scope="row">
+                @Html.DisplayFor(modelItem => item.LabelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+            <td>
+                <a role="button" class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.LabelId">Bearbeiten</a>
+            </td>
+            <td>
+                <a role="button" class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.LabelId">Details</a>
+            </td>
+            <td>
+                <a role="button" class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.LabelId">Löschen</a>
+            </td>
+        </tr>
+    }
+}

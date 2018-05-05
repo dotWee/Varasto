@@ -1,0 +1,21 @@
+@model Varasto.Core.Model.Label
+
+@{
+    ViewData["Title"] = "Labeldetails";
+    Layout = "_PartialModelDetails";
+}
+
+@section ModelElements{
+    <dt>
+        @Html.DisplayNameFor(model => model.LabelId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.LabelId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+}

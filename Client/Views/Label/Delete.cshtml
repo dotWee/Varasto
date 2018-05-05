@@ -1,0 +1,9 @@
+@model Varasto.Core.Model.Label
+
+@{
+    ViewData["Title"] = "Label löschen";
+    ViewData["ModelName"] = "Label";
+    ViewData["ModelValue"] = Html.DisplayFor(model => model.Description);
+    ViewData["ModelId"] = Model.LabelId;
+    Layout = "_PartialModelDelete";
+}

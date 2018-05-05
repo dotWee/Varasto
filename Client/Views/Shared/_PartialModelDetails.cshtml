@@ -1,0 +1,26 @@
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                @ViewData["Title"]
+            </h5>
+
+            <hr />
+
+            <dl class="dl-horizontal">
+                @RenderSection("ModelElements", required: true)
+            </dl>
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="Index">Zurück zur Liste</a>
+        </div>
+    </div>
+</div>
+
+@RenderBody()

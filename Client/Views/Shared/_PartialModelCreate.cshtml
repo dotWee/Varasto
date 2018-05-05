@@ -1,0 +1,29 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                @ViewData["Title"]
+            </h5>
+
+            <hr />
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @RenderSection("ModelInput", required: true)
+                <div class="form-group">
+                    <input type="submit" value="Speichern" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="Index">Zurück zur Liste</a>
+        </div>
+    </div>
+</div>
+
+@RenderBody()

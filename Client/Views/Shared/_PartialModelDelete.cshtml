@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                @ViewData["Title"]
+            </h5>
+            <h6 class="card-subtitle text-muted">@ViewData["ModelName"] "<span class="text-danger">@ViewData["ModelValue"]</span>" löschen?</h6>
+
+            <hr />
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="@ViewData["ModelId"]" />
+                <input type="submit" value="Löschen" class="btn btn-danger" />
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="Index">Zurück zur Liste</a>
+        </div>
+    </div>
+</div>
+
+@RenderBody()

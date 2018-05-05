@@ -1,0 +1,39 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="container mt-3">
+    <form asp-action="Edit">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @ViewData["Title"]
+                </h5>
+
+                <hr />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @RenderSection("ModelInput", required: true)
+
+            </div>
+
+            @if (IsSectionDefined("ModelExtra"))
+            {
+                @RenderSection("ModelExtra")
+            }
+
+            <div class="card-body pt-0 pb-0">
+                <div class="form-group">
+                    <input type="submit" value="Speichern" class="btn btn-warning" />
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <a asp-action="Index">Zurück zur Liste</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@RenderBody()
