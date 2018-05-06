@@ -1,0 +1,9 @@
+@model Varasto.Core.Model.Product
+
+@{
+    ViewData["Title"] = "Produkt löschen";
+    ViewData["ModelName"] = "Produkt";
+    ViewData["ModelValue"] = Html.DisplayFor(model => model.Name);
+    ViewData["ModelId"] = Model.ProductId;
+    Layout = "_PartialModelDelete";
+}

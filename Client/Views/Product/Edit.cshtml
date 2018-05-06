@@ -1,0 +1,16 @@
+@model Varasto.Core.Model.Product
+
+@{
+    ViewData["Title"] = "Produkt bearbeiten";
+    Layout = "_PartialModelEdit";
+}
+
+@section ModelInput{
+    <input type="hidden" asp-for="@Model.ProductId" />
+
+    <div class="form-group">
+        <category asp-for="Description" class="control-category"></category>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+}

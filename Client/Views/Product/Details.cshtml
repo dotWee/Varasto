@@ -1,0 +1,39 @@
+@model Varasto.Core.Model.Product
+
+@{
+    ViewData["Title"] = "Produktdetails";
+    Layout = "_PartialModelDetails";
+}
+
+@section ModelElements{
+    <dt>
+        @Html.DisplayNameFor(model => model.ProductId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProductId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.EuropeanArticleNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.EuropeanArticleNumber)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Category)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Labels)
+    </dd>
+}

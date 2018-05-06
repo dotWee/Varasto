@@ -1,0 +1,48 @@
+@model IEnumerable<Varasto.Core.Model.Product>
+
+@{
+    ViewData["Title"] = "Produkte";
+    ViewData["TitleCreate"] = "Neues Produkt anlegen";
+    Layout = "_PartialModelIndex";
+}
+
+@section ModelCols{
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.ProductId)
+    </th>
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.EuropeanArticleNumber)
+    </th>
+    <th scope="col" colspan="3">
+        Aktionen
+    </th>
+}
+
+@section ModelRows{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td scope="row">
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.EuropeanArticleNumber)
+            </th>
+            <td>
+                <a role="button" class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.ProductId">Bearbeiten</a>
+            </td>
+            <td>
+                <a role="button" class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+            </td>
+            <td>
+                <a role="button" class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.ProductId">Löschen</a>
+            </td>
+        </tr>
+    }
+}

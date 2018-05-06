@@ -1,0 +1,24 @@
+@model Varasto.Core.Model.Product
+
+@{
+    ViewData["Title"] = "Produkt anlegen";
+    Layout = "_PartialModelCreate";
+}
+
+@section ModelInput{
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EuropeanArticleNumber" class="control-label"></label>
+        <input asp-for="EuropeanArticleNumber" class="form-control" />
+        <span asp-validation-for="EuropeanArticleNumber" class="text-danger"></span>
+    </div>
+}
