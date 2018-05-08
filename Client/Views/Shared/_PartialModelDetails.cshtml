@@ -1,26 +1,17 @@
-
 @{
-    Layout = "_Layout";
+    Layout = "_PartialModel";
 }
 
-<div class="container mt-3">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">
-                @ViewData["Title"]
-            </h5>
-
-            <hr />
-
-            <dl class="dl-horizontal">
-                @RenderSection("ModelElements", required: true)
-            </dl>
-        </div>
-
-        <div class="card-footer">
-            <a asp-action="Index">Zurück zur Liste</a>
-        </div>
+@section Content 
+{
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            @RenderSection("ModelElements", required: true)
+        </dl>
     </div>
-</div>
+}
 
-@RenderBody()
+@section Footer 
+{
+    <a asp-action="Index">Zurück zur Liste</a>
+}
