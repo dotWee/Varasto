@@ -14,7 +14,7 @@
         @Html.DisplayNameFor(model => model.Name)
     </th>
     <th scope="col">
-        @Html.DisplayNameFor(model => model.EuropeanArticleNumber)
+        @Html.DisplayNameFor(model => model.EAN)
     </th>
     <th scope="col" colspan="3">
         Aktionen
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <th scope="col">
-                @Html.DisplayFor(modelItem => item.EuropeanArticleNumber)
+                @Html.DisplayFor(modelItem => item.EAN)
             </th>
             <td>
                 <a role="button" class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.ProductId">Bearbeiten</a>
