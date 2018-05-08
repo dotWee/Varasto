@@ -8,6 +8,7 @@ namespace Varasto.Core.Model
     public class Product
     {
         [Key]
+        [DisplayName("ID")]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
