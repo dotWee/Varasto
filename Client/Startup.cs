@@ -4,8 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Varasto.Core;
+using Varasto.Core.Database;
+using System;
+using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
+using Varasto.Core.Model;
 
 namespace Varasto.Client
 {
@@ -22,6 +29,7 @@ namespace Varasto.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<DatabaseContext>(options => options.UseInMemoryDatabase(Globals.SchemaName));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

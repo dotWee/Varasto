@@ -10,10 +10,10 @@ namespace Varasto.Client.Controllers
     public class LabelController : Controller
     {
         private readonly DatabaseContext _context;
-
-        public LabelController()
+        
+        public LabelController(DatabaseContext databaseContext)
         {
-            _context = new DatabaseContext();
+            _context = databaseContext;
         }
 
         // GET: Labels

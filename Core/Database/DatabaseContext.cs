@@ -5,16 +5,8 @@ using Varasto.Core.Model;
 namespace Varasto.Core.Database
 {
     public class DatabaseContext : DbContext
-    {
-        public DatabaseContext() : base(new DbContextOptionsBuilder<DatabaseContext>()
-            .UseInMemoryDatabase(databaseName: Globals.SchemaName)
-            .Options)
-        {
-        }
-        
-        public DatabaseContext(DbContextOptions<DatabaseContext> options)
-            : base(options)
-        { }
+    {   
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Label> Labels { get; set; }

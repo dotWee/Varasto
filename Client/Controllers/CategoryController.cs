@@ -11,9 +11,10 @@ namespace Varasto.Client.Controllers
     {
         private readonly DatabaseContext _context;
 
-        public CategoryController()
+        
+        public CategoryController(DatabaseContext databaseContext)
         {
-            _context = new DatabaseContext();
+            _context = databaseContext;
         }
 
         // GET: Categories

@@ -11,9 +11,9 @@ namespace Varasto.Client.Controllers
     {
         private readonly DatabaseContext _context;
 
-        public ProductController()
+        public ProductController(DatabaseContext databaseContext)
         {
-            _context = new DatabaseContext();
+            _context = databaseContext;
         }
 
         // GET: Products
