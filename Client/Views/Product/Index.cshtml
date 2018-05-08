@@ -14,6 +14,9 @@
         @Html.DisplayNameFor(model => model.Name)
     </th>
     <th scope="col">
+        @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th scope="col">
         @Html.DisplayNameFor(model => model.EAN)
     </th>
     <th scope="col" colspan="3">
@@ -30,6 +33,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <th scope="col">
                 @Html.DisplayFor(modelItem => item.EAN)

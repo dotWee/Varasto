@@ -51,7 +51,7 @@ namespace Varasto.Client.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,Name,Description,EuropeanArticleNumber")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductID,Name,Description,EAN")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace Varasto.Client.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,EuropeanArticleNumber")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,EAN")] Product product)
         {
             if (id != product.ProductId)
             {
