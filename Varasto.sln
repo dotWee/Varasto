@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Varasto.Api", "Api\Varasto.
 		{5C2B21D2-5FEB-4DDF-9204-EABF146A51D5} = {5C2B21D2-5FEB-4DDF-9204-EABF146A51D5}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Varasto.Api.Test", "Api.Test\Varasto.Api.Test.csproj", "{1F4B7E52-9CDD-41E3-B032-21B717BB2F16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
