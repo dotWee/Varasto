@@ -12,12 +12,8 @@ namespace Varasto.Core.Test.Model
         [Fact]
         public void AddTest()
         {
-            var options = new DbContextOptionsBuilder<DatabaseContext>()
-                .UseInMemoryDatabase(databaseName: "Add_writes_to_database")
-                .Options;
-
             // Run the test against one instance of the context
-            using (var context = new DatabaseContext(options))
+            using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
             {
                 var newCategory = new Category() {Description = "Example"};
                 context.Add(newCategory);
@@ -25,7 +21,7 @@ namespace Varasto.Core.Test.Model
             }
 
             // Use a separate instance of the context to verify correct category was saved to database
-            using (var context = new DatabaseContext(options))
+            using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
             {
                 Assert.Equal(1, context.Categories.Count());
                 Assert.Equal("Example", context.Categories.Single().Description);
