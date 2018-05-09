@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Varasto.Core.Database;
@@ -30,11 +32,17 @@ namespace Varasto.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
 
-            if (category == null) return NotFound();
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             return Ok(category);
         }
@@ -43,9 +51,15 @@ namespace Varasto.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory([FromRoute] int id, [FromBody] Category category)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (id != category.CategoryId) return BadRequest();
+            if (id != category.CategoryId)
+            {
+                return BadRequest();
+            }
 
             _context.Entry(category).State = EntityState.Modified;
 
@@ -56,8 +70,13 @@ namespace Varasto.Api.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!CategoryExists(id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
@@ -67,22 +86,31 @@ namespace Varasto.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCategory([FromBody] Category category)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new {id = category.CategoryId}, category);
+            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null) return NotFound();
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();

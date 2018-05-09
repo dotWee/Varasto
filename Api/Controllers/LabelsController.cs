@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Varasto.Core.Database;
@@ -30,11 +32,17 @@ namespace Varasto.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetLabel([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var label = await _context.Labels.SingleOrDefaultAsync(m => m.LabelId == id);
 
-            if (label == null) return NotFound();
+            if (label == null)
+            {
+                return NotFound();
+            }
 
             return Ok(label);
         }
@@ -43,9 +51,15 @@ namespace Varasto.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLabel([FromRoute] int id, [FromBody] Label label)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (id != label.LabelId) return BadRequest();
+            if (id != label.LabelId)
+            {
+                return BadRequest();
+            }
 
             _context.Entry(label).State = EntityState.Modified;
 
@@ -56,8 +70,13 @@ namespace Varasto.Api.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!LabelExists(id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
@@ -67,22 +86,30 @@ namespace Varasto.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostLabel([FromBody] Label label)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             _context.Labels.Add(label);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLabel", new {id = label.LabelId}, label);
+            return CreatedAtAction("GetLabel", new { id = label.LabelId }, label);
         }
 
         // DELETE: api/Labels/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLabel([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var label = await _context.Labels.SingleOrDefaultAsync(m => m.LabelId == id);
-            if (label == null) return NotFound();
+            if (label == null)
+            {
+                return NotFound();
+            }
 
             _context.Labels.Remove(label);
             await _context.SaveChangesAsync();

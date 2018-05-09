@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Varasto.Core.Database;
@@ -30,11 +32,17 @@ namespace Varasto.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
 
-            if (product == null) return NotFound();
+            if (product == null)
+            {
+                return NotFound();
+            }
 
             return Ok(product);
         }
@@ -43,9 +51,15 @@ namespace Varasto.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct([FromRoute] int id, [FromBody] Product product)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (id != product.ProductId) return BadRequest();
+            if (id != product.ProductId)
+            {
+                return BadRequest();
+            }
 
             _context.Entry(product).State = EntityState.Modified;
 
@@ -56,8 +70,13 @@ namespace Varasto.Api.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!ProductExists(id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
@@ -67,22 +86,31 @@ namespace Varasto.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProduct([FromBody] Product product)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new {id = product.ProductId}, product);
+            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
-            if (product == null) return NotFound();
+            if (product == null)
+            {
+                return NotFound();
+            }
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
