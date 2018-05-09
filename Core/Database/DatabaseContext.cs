@@ -23,6 +23,9 @@ namespace Varasto.Core.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(schema: Globals.SchemaName);
+            modelBuilder.Entity<Product>()
+                .HasOne(e => e.Category)
+                .WithMany(c => c.Products);
 
             base.OnModelCreating(modelBuilder);
         }
