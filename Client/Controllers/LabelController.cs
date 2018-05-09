@@ -10,7 +10,7 @@ namespace Varasto.Client.Controllers
     public class LabelController : Controller
     {
         private readonly DatabaseContext _context;
-        
+
         public LabelController(DatabaseContext databaseContext)
         {
             _context = databaseContext;
@@ -25,17 +25,11 @@ namespace Varasto.Client.Controllers
         // GET: Labels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var label = await _context.Labels
                 .SingleOrDefaultAsync(l => l.LabelId == id);
-            if (label == null)
-            {
-                return NotFound();
-            }
+            if (label == null) return NotFound();
 
             return View(label);
         }
@@ -59,22 +53,17 @@ namespace Varasto.Client.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(label);
         }
 
         // GET: Labels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var label = await _context.Labels.SingleOrDefaultAsync(l => l.LabelId == id);
-            if (label == null)
-            {
-                return NotFound();
-            }
+            if (label == null) return NotFound();
             return View(label);
         }
 
@@ -85,10 +74,7 @@ namespace Varasto.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("LabelId,Description")] Label label)
         {
-            if (id != label.LabelId)
-            {
-                return NotFound();
-            }
+            if (id != label.LabelId) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -100,39 +86,31 @@ namespace Varasto.Client.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!LabelExists(label.LabelId))
-                    {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(label);
         }
 
         // GET: Labels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var label = await _context.Labels
                 .SingleOrDefaultAsync(l => l.LabelId == id);
-            if (label == null)
-            {
-                return NotFound();
-            }
+            if (label == null) return NotFound();
 
             return View(label);
         }
 
         // POST: Labels/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

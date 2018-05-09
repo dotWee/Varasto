@@ -1,5 +1,3 @@
-using System;
-
 namespace Varasto.Client.Models
 {
     public class ErrorViewModel
