@@ -16,6 +16,6 @@ namespace Varasto.Core.Model
         public int EAN { get; set; }
         
         public Category Category { get; set; }
-        public ICollection<Label> Labels { get; set; }
+        public ICollection<ProductLabel> ProductLabels { get; set; }
     }
 }
