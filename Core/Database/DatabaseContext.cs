@@ -9,9 +9,7 @@ namespace Varasto.Core.Database
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Label> Labels { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductLabel> ProductLabels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,19 +25,6 @@ namespace Varasto.Core.Database
             modelBuilder.Entity<Product>()
                 .HasOne(e => e.Category)
                 .WithMany(c => c.Products);
-
-            modelBuilder.Entity<ProductLabel>()
-                .HasKey(bc => new { bc.ProductId, bc.LabelId });
-
-            modelBuilder.Entity<ProductLabel>()
-                .HasOne(bc => bc.Product)
-                .WithMany(b => b.ProductLabels)
-                .HasForeignKey(bc => bc.ProductId);
-
-            modelBuilder.Entity<ProductLabel>()
-                .HasOne(bc => bc.Label)
-                .WithMany(c => c.ProductLabels)
-                .HasForeignKey(bc => bc.LabelId);
 
             base.OnModelCreating(modelBuilder);
         }
