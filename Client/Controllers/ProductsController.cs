@@ -1,35 +1,46 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Varasto.Core.Database;
 using Varasto.Core.Model;
 
 namespace Varasto.Client.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public ProductController(DatabaseContext databaseContext)
+        public ProductsController(DatabaseContext context)
         {
-            _context = databaseContext;
+            _context = context;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            var databaseContext = _context.Products.Include(p => p.Category);
+            return View(await databaseContext.ToListAsync());
         }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var product = await _context.Products
-                .SingleOrDefaultAsync(l => l.ProductId == id);
-            if (product == null) return NotFound();
+                .Include(p => p.Category)
+                .SingleOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
 
             return View(product);
         }
@@ -37,6 +48,7 @@ namespace Varasto.Client.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
             return View();
         }
 
@@ -45,8 +57,7 @@ namespace Varasto.Client.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,Name,Description,EAN")]
-            Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,EAN,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -54,17 +65,24 @@ namespace Varasto.Client.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            var product = await _context.Products.SingleOrDefaultAsync(l => l.ProductId == id);
-            if (product == null) return NotFound();
+            var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 
@@ -73,10 +91,12 @@ namespace Varasto.Client.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,EAN")]
-            Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,EAN,CategoryId")] Product product)
         {
-            if (id != product.ProductId) return NotFound();
+            if (id != product.ProductId)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -88,35 +108,45 @@ namespace Varasto.Client.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProductExists(product.ProductId))
+                    {
                         return NotFound();
-                    throw;
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-
                 return RedirectToAction(nameof(Index));
             }
-
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var product = await _context.Products
-                .SingleOrDefaultAsync(l => l.ProductId == id);
-            if (product == null) return NotFound();
+                .Include(p => p.Category)
+                .SingleOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
 
             return View(product);
         }
 
         // POST: Products/Delete/5
-        [HttpPost]
-        [ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.SingleOrDefaultAsync(l => l.ProductId == id);
+            var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

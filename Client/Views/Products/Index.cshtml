@@ -1,4 +1,4 @@
-@model IEnumerable<Varasto.Core.Model.Product>
+﻿@model IEnumerable<Varasto.Core.Model.Product>
 
 @{
     ViewData["Title"] = "Produkte";
@@ -19,6 +19,9 @@
     <th scope="col">
         @Html.DisplayNameFor(model => model.EAN)
     </th>
+    <th scope="col">
+        @Html.DisplayNameFor(model => model.Category)
+    </th>
     <th scope="col" colspan="3">
         Aktionen
     </th>
@@ -37,9 +40,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <th scope="col">
+            <td>
                 @Html.DisplayFor(modelItem => item.EAN)
-            </th>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Description)
+            </td>
             <td>
                 <a role="button" class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.ProductId">Bearbeiten</a>
             </td>

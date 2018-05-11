@@ -1,4 +1,4 @@
-@model IEnumerable<Varasto.Core.Model.Category>
+﻿@model IEnumerable<Varasto.Core.Model.Category>
 
 @{
     ViewData["Title"] = "Kategorie";
@@ -7,9 +7,6 @@
 }
 
 @section ModelCols{
-    <th scope="col">
-        @Html.DisplayNameFor(model => model.CategoryId)
-    </th>
     <th scope="col">
         @Html.DisplayNameFor(model => model.Description)
     </th>
@@ -22,9 +19,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td scope="row">
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>

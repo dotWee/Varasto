@@ -1,19 +1,22 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Varasto.Core.Database;
 using Varasto.Core.Model;
 
 namespace Varasto.Client.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoriesController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public CategoryController(DatabaseContext databaseContext)
+        public CategoriesController(DatabaseContext context)
         {
-            _context = databaseContext;
+            _context = context;
         }
 
         // GET: Categories
@@ -25,11 +28,17 @@ namespace Varasto.Client.Controllers
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var category = await _context.Categories
-                .SingleOrDefaultAsync(l => l.CategoryId == id);
-            if (category == null) return NotFound();
+                .SingleOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             return View(category);
         }
@@ -45,7 +54,7 @@ namespace Varasto.Client.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryID,Description")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryId,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -53,17 +62,22 @@ namespace Varasto.Client.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
             return View(category);
         }
 
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            var category = await _context.Categories.SingleOrDefaultAsync(l => l.CategoryId == id);
-            if (category == null) return NotFound();
+            var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
             return View(category);
         }
 
@@ -74,7 +88,10 @@ namespace Varasto.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Description")] Category category)
         {
-            if (id != category.CategoryId) return NotFound();
+            if (id != category.CategoryId)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -86,35 +103,43 @@ namespace Varasto.Client.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CategoryExists(category.CategoryId))
+                    {
                         return NotFound();
-                    throw;
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-
                 return RedirectToAction(nameof(Index));
             }
-
             return View(category);
         }
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var category = await _context.Categories
-                .SingleOrDefaultAsync(l => l.CategoryId == id);
-            if (category == null) return NotFound();
+                .SingleOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             return View(category);
         }
 
         // POST: Categories/Delete/5
-        [HttpPost]
-        [ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Categories.SingleOrDefaultAsync(l => l.CategoryId == id);
+            var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

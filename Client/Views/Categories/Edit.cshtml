@@ -1,11 +1,14 @@
-@model Varasto.Core.Model.Category
+﻿@model Varasto.Core.Model.Category
 
 @{
-    ViewData["Title"] = "Kategorie anlegen";
-    Layout = "_PartialModelCreate";
+    ViewData["Title"] = "Kategorie bearbeiten";
+    Layout = "_PartialModelEdit";
 }
 
 @section ModelInput{
+    <input type="hidden" asp-for="@Model.CategoryId" />
+
+    <input type="hidden" asp-for="CategoryId" />
     <div class="form-group">
         <label asp-for="Description" class="control-label"></label>
         <input asp-for="Description" class="form-control" />
