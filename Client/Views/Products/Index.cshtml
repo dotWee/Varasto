@@ -8,19 +8,13 @@
 
 @section ModelCols{
     <th scope="col">
-        @Html.DisplayNameFor(model => model.ProductId)
-    </th>
-    <th scope="col">
         @Html.DisplayNameFor(model => model.Name)
-    </th>
-    <th scope="col">
-        @Html.DisplayNameFor(model => model.Description)
     </th>
     <th scope="col">
         @Html.DisplayNameFor(model => model.EAN)
     </th>
     <th scope="col">
-        @Html.DisplayNameFor(model => model.Category)
+        @Html.DisplayNameFor(model => model.CategoryId)
     </th>
     <th scope="col" colspan="3">
         Aktionen
@@ -32,13 +26,7 @@
     {
         <tr>
             <td scope="row">
-                @Html.DisplayFor(modelItem => item.ProductId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EAN)
