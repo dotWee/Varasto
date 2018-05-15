@@ -17,6 +17,11 @@ namespace Varasto.Client.Controllers
         public ProductsController(DatabaseContext context)
         {
             _context = context;
+            
+            if (!context.Products.Any())
+            {
+                DatabaseSeeder.Seed(context);
+            }
         }
 
         // GET: Products
