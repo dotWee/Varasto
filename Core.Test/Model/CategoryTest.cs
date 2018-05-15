@@ -27,5 +27,31 @@ namespace Varasto.Core.Test.Model
                 Assert.Equal("Example", context.Categories.Single().Description);
             }
         }
+
+        [Fact]
+        public void RemoveTest()
+        {
+            var newCategory = new Category() {Description = "Example"};
+            int id;
+            
+            // Run the test against one instance of the context
+            using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
+            {
+                context.Add(newCategory);
+                context.SaveChanges();
+                id = newCategory.CategoryId;
+            }
+            
+            // Use a separate instance of the context to verify correct category was saved to database and deleted after
+            using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
+            {
+                Assert.Equal(1, context.Categories.Count());
+                Assert.Equal("Example", context.Categories.Single().Description);
+
+                context.Remove(newCategory);
+                Assert.Equal(0, context.Categories.Count());
+                Assert.Null(context.Categories);
+            }
+        }
     }
 }
