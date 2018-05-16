@@ -11,5 +11,6 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Api\Varasto.Api.csproj"/>
+        <ProjectReference Include="..\Core.Test\Varasto.Core.Test.csproj"/>
     </ItemGroup>
 </Project>
