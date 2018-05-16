@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Varasto.Core.Database;
 using Varasto.Core.Model;
 
-namespace Varasto.Core.Database
+namespace Varasto.Core.Test.Database
 {
     public class DatabaseSeeder
     {

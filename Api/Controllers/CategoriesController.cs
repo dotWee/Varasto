@@ -19,11 +19,6 @@ namespace Varasto.Api.Controllers
         public CategoriesController(DatabaseContext context)
         {
             _context = context;
-
-            if (!context.Categories.Any())
-            {
-                DatabaseSeeder.Seed(context);
-            }
         }
 
         // GET: api/Categories
