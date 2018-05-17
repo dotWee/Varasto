@@ -24,7 +24,8 @@ namespace Varasto.Core.Database
             modelBuilder.HasDefaultSchema(schema: Globals.SchemaName);
             modelBuilder.Entity<Product>()
                 .HasOne(e => e.Category)
-                .WithMany(c => c.Products);
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
 
             base.OnModelCreating(modelBuilder);
         }
