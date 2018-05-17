@@ -25,7 +25,7 @@ namespace Varasto.Api.Controllers
         [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products.Include(p => p.Category);
+            return _context.Products;
         }
 
         // GET: api/Products/5
@@ -37,7 +37,7 @@ namespace Varasto.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await _context.Products.Include(p => p.Category).SingleOrDefaultAsync(m => m.ProductId == id);
+            var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
 
             if (product == null)
             {
@@ -106,7 +106,7 @@ namespace Varasto.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await _context.Products.Include(p => p.Category).SingleOrDefaultAsync(m => m.ProductId == id);
+            var product = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();

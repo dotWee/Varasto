@@ -25,7 +25,7 @@ namespace Varasto.Api.Controllers
         [HttpGet]
         public IEnumerable<Category> GetCategories()
         {
-            return _context.Categories.Include(c => c.Products);
+            return _context.Categories;
         }
 
         // GET: api/Categories/5
@@ -37,7 +37,7 @@ namespace Varasto.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var category = await _context.Categories.Include(c => c.Products).SingleOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
 
             if (category == null)
             {
@@ -106,7 +106,7 @@ namespace Varasto.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var category = await _context.Categories.Include(c => c.Products).SingleOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _context.Categories.SingleOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
                 return NotFound();

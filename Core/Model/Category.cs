@@ -13,7 +13,7 @@ namespace Varasto.Core.Model
         public int CategoryId { get; set; }
         
         [DisplayName("Name")]
-        public string Description { get; set; }
+        public string Name { get; set; }
         
         [DisplayName("Produkte")]
         public virtual ICollection<Product> Products { get; set; }

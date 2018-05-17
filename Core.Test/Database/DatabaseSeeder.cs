@@ -21,17 +21,17 @@ namespace Varasto.Core.Test.Database
 
         private static void SeedCategories(DatabaseContext databaseContext)
         {
-            var categoryFood = new Category() {Description = CategoryDescriptionFood};
+            var categoryFood = new Category() {Name = CategoryDescriptionFood};
             databaseContext.Categories.Add(categoryFood);
             
-            var categoryOffice = new Category() { Description = CategoryDescriptionOffice};
+            var categoryOffice = new Category() { Name = CategoryDescriptionOffice};
             databaseContext.Categories.Add(categoryOffice);
         }
 
         private static void SeedProducts(DatabaseContext databaseContext)
         {
             var categoryFood =
-                databaseContext.Categories.Single(category => category.Description == CategoryDescriptionFood);
+                databaseContext.Categories.Single(category => category.Name == CategoryDescriptionFood);
             
             var productApple = new Product() { Name = "Apple", CategoryId = categoryFood.CategoryId };
             databaseContext.Products.Add(productApple);
@@ -40,7 +40,7 @@ namespace Varasto.Core.Test.Database
             databaseContext.Products.Add(productSoup);
             
             var categoryOffice =
-                databaseContext.Categories.Single(category => category.Description == CategoryDescriptionOffice);
+                databaseContext.Categories.Single(category => category.Name == CategoryDescriptionOffice);
 
             var productPencil = new Product() { Name = "Pencil", CategoryId = categoryOffice.CategoryId };
             databaseContext.Products.Add(productPencil);

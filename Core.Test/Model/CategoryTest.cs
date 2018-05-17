@@ -15,7 +15,7 @@ namespace Varasto.Core.Test.Model
             // Run the test against one instance of the context
             using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
             {
-                var newCategory = new Category() {Description = "Example"};
+                var newCategory = new Category() {Name = "Example"};
                 context.Add(newCategory);
                 context.SaveChanges();
             }
@@ -24,14 +24,14 @@ namespace Varasto.Core.Test.Model
             using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
             {
                 Assert.Equal(1, context.Categories.Count());
-                Assert.Equal("Example", context.Categories.Single().Description);
+                Assert.Equal("Example", context.Categories.Single().Name);
             }
         }
 
         [Fact]
         public void RemoveTest()
         {
-            var newCategory = new Category() {Description = "Example"};
+            var newCategory = new Category() {Name = "Example"};
             int id;
             
             // Run the test against one instance of the context
@@ -46,7 +46,7 @@ namespace Varasto.Core.Test.Model
             using (var context = new DatabaseContext(Globals.DbContextInMemoryConfig))
             {
                 Assert.Equal(1, context.Categories.Count());
-                Assert.Equal("Example", context.Categories.Single().Description);
+                Assert.Equal("Example", context.Categories.Single().Name);
 
                 context.Remove(newCategory);
                 Assert.Equal(0, context.Categories.Count());

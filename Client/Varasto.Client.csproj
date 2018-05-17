@@ -10,19 +10,19 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
   <ItemGroup>
-      <ProjectReference Include="..\Api\Varasto.Api.csproj"/>
+      <ProjectReference Include="..\Api\Varasto.Api.csproj" />
     <ProjectReference Include="..\Core\Varasto.Core.csproj" />
   </ItemGroup>
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="Views\Label\Create.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Label\Delete.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Label\Details.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Label\Edit.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Label\Index.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Category\Create.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Category\Delete.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Category\Details.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Category\Edit.cshtml"/>
-        <_ContentIncludedByDefault Remove="Views\Category\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Views\Label\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Label\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Label\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Label\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Label\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Category\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Category\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Category\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Category\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Views\Category\Index.cshtml" />
     </ItemGroup>
 </Project>
