@@ -14,7 +14,7 @@ namespace Varasto.Core.Model
         
         [DisplayName("Notizen")]
         public string Description { get; set; }
-        public int EAN { get; set; }
+        public long EAN { get; set; }
         
         [DisplayName("Kategorie")]
         public int CategoryId { get; set; }        
