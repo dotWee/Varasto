@@ -10,6 +10,8 @@ namespace Varasto.Core.Database
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Storage> Storages { get; set; }
+        public DbSet<StorageEntry> StorageEntries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,6 +24,12 @@ namespace Varasto.Core.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(schema: Globals.SchemaName);
+            
+            modelBuilder.Entity<Storage>()
+                .HasMany(s => s.StorageEntries)
+                .WithOne(e => e.Storage)
+                .HasForeignKey(e => e.StorageId);
+            
             modelBuilder.Entity<Product>()
                 .HasOne(e => e.Category)
                 .WithMany(c => c.Products)

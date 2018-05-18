@@ -9,9 +9,9 @@ namespace Varasto.Core.Model
         [Key]
         [DisplayName("ID")]
         public int StorageId { get; set; }
+        
         public string Name { get; set; }
         
-        [DisplayName("Produkte")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<StorageEntry> StorageEntries { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Varasto.Core.Model
         [Key]
         [DisplayName("ID")]
         public int ProductId { get; set; }
+        
         public string Name { get; set; }
         
         [DisplayName("Notizen")]
