@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Varasto.Core.Model.Category>
+﻿@model IEnumerable<Varasto.Core.Model.Storage>
 
 @{
     ViewData["Title"] = "Index";
@@ -25,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.StorageId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StorageId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StorageId">Delete</a>
             </td>
         </tr>
 }
